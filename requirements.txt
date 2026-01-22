@@ -1,5 +1,7 @@
-langchain-google-genai
-langchain-chroma
-langchain-text-splitters
-pypdf
 streamlit
+pandas
+google-generativeai
+langchain-community
+chromadb
+sentence-transformers
+huggingface-hub
