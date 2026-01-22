@@ -19,7 +19,7 @@
         },
         "id": "AGdT2PPltdTh",
         "outputId": "b069cd8e-de4e-4f12-a20f-5fd0a7ffca8d",
-        "collapsed": true
+        "collapsed": True
       },
       "outputs": [
         {
@@ -321,7 +321,7 @@
           "base_uri": "https://localhost:8080/",
           "height": 1000
         },
-        "collapsed": true,
+        "collapsed": True,
         "id": "omNYatYxuCXh",
         "outputId": "5f5bb50d-1bc9-4a64-e62d-d89f57b9fe5b"
       },
@@ -438,7 +438,7 @@
               "  cancel.remove();\n",
               "\n",
               "  // Disable the input element since further picks are not allowed.\n",
-              "  inputElement.disabled = true;\n",
+              "  inputElement.disabled = True;\n",
               "\n",
               "  if (!files) {\n",
               "    return {\n",
@@ -715,7 +715,7 @@
         },
         "id": "PfHGqbwj-5nP",
         "outputId": "a3c54fe3-7811-4100-c51e-914beaa8fd48",
-        "collapsed": true
+        "collapsed": True
       },
       "outputs": [
         {
@@ -799,7 +799,7 @@
     "colab": {
       "provenance": [],
       "authorship_tag": "ABX9TyPlu1IUKNxvooJbblvh4y7K",
-      "include_colab_link": true
+      "include_colab_link": True
     },
     "kernelspec": {
       "display_name": "Python 3",
