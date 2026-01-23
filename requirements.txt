@@ -6,7 +6,7 @@ langchain-community
 chromadb
 sentence-transformers
 huggingface-hub
-pyngrok
+
 
 
 
