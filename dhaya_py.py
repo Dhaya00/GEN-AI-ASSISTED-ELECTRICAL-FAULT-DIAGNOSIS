@@ -31,7 +31,7 @@ model = genai.GenerativeModel('models/gemini-2.5-flash')
 @st.cache_resource
 def load_vector_db():
     df = pd.read_csv("faultdata-new.csv")
-
+    df = pd.read_csv("sensor-fault-detection.csv")
     df.columns = [
         "Resistance",
         "Grid_Current_A", "Grid_Current_B", "Grid_Current_C",
