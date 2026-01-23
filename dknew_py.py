@@ -119,8 +119,4 @@ model = genai.GenerativeModel('models/gemini-2.5-flash')
 #         st.warning("Please enter fault details.")
 #
 
-wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
-chmod +x cloudflared-linux-amd64
-mv cloudflared-linux-amd64 cloudflared
 
-streamlit run app.py & ./cloudflared tunnel --url http://localhost:8501
