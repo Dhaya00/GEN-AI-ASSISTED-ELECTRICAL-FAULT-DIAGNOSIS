@@ -47,101 +47,101 @@ model = genai.GenerativeModel('models/gemini-2.5-flash')
 
 # Commented out IPython magic to ensure Python compatibility.
 # %%writefile app.py
-# import streamlit as st
-# import pandas as pd
-# import os
-# import google.generativeai as genai
-# 
-# from langchain_community.embeddings import HuggingFaceEmbeddings
-# from langchain_community.vectorstores import Chroma
-# 
+import streamlit as st
+import pandas as pd
+import os
+import google.generativeai as genai
+ 
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
+ 
 # # ---------------- CONFIG ----------------
-# st.set_page_config(page_title="Electrical Fault Diagnosis Chatbot")
-# 
-# genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
-# model = genai.GenerativeModel('models/gemini-2.5-flash')
-# 
-# # ---------------- LOAD DATA ----------------
-# @st.cache_resource
-# def load_vector_db():
-#     df = pd.read_csv("faultdata-new.csv")
-# 
-#     df.columns = [
-#         "Resistance",
-#         "Grid_Current_A", "Grid_Current_B", "Grid_Current_C",
-#         "Rotor_Current_A", "Rotor_Current_B", "Rotor_Current_C",
-#         "Stator_Current_A", "Stator_Current_B", "Stator_Current_C",
-#         "Grid_Voltage_A", "Grid_Voltage_B", "Grid_Voltage_C",
-#         "Grid_Power_P", "Grid_Power_Q",
-#         "Rotor_Power_P", "Rotor_Power_Q",
-#         "Stator_Power_P", "Stator_Power_Q",
-#         "Fault_Class"
-#     ]
-# 
-#     documents = []
-#     for _, row in df.iterrows():
-#         documents.append(
-#             f"""
-# Resistance: {row['Resistance']} ohm
-# Grid Currents: {row['Grid_Current_A']}, {row['Grid_Current_B']}, {row['Grid_Current_C']}
-# Rotor Currents: {row['Rotor_Current_A']}, {row['Rotor_Current_B']}, {row['Rotor_Current_C']}
-# Stator Currents: {row['Stator_Current_A']}, {row['Stator_Current_B']}, {row['Stator_Current_C']}
-# Voltages: {row['Grid_Voltage_A']}, {row['Grid_Voltage_B']}, {row['Grid_Voltage_C']}
-# Grid Power: P={row['Grid_Power_P']} Q={row['Grid_Power_Q']}
-# Rotor Power: P={row['Rotor_Power_P']} Q={row['Rotor_Power_Q']}
-# Stator Power: P={row['Stator_Power_P']} Q={row['Stator_Power_Q']}
-# Fault Type: {row['Fault_Class']}
-# """
-#         )
-# 
-#     embedding = HuggingFaceEmbeddings(
-#         model_name="sentence-transformers/all-MiniLM-L6-v2"
-#     )
-# 
-#     vectordb = Chroma.from_texts(documents, embedding)
-#     return vectordb
-# 
-# vectordb = load_vector_db()
-# 
-# # ---------------- CHATBOT FUNCTION ----------------
-# def diagnose_fault(query):
-#     docs = vectordb.similarity_search(query, k=4)
-#     context = "\n".join([d.page_content for d in docs])
-# 
-#     prompt = f"""
-# You are an Electrical Fault Diagnosis Expert AI.
-# 
-# Context:
-# {context}
-# 
-# User Input:
-# {query}
-# 
-# Provide:
-# 1. Fault Type
-# 2. Technical Cause
-# 3. Electrical Explanation
-# 4. Preventive Measures
-# """
-# 
-#     response = model.generate_content(prompt)
-#     return response.text
-# 
-# # ---------------- UI ----------------
-# st.title("⚡ Electrical Fault Diagnosis Chatbot")
-# 
-# user_input = st.text_area(
-#     "Enter fault symptoms or electrical parameters:",
-#     placeholder="Example: High stator current in phase B and low grid voltage"
-# )
-# 
-# if st.button("⚡"):
-#     if user_input.strip():
-#         with st.spinner("Analyzing fault..."):
-#             answer = diagnose_fault(user_input)
-#         st.success("Diagnosis Completed")
-#         st.write(answer)
-#     else:
-#         st.warning("Please enter fault details.")
-#
+ st.set_page_config(page_title="Electrical Fault Diagnosis Chatbot")
+ 
+ genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+ model = genai.GenerativeModel('models/gemini-2.5-flash')
+ 
+ # ---------------- LOAD DATA ----------------
+ @st.cache_resource
+ def load_vector_db():
+     df = pd.read_csv("faultdata-new.csv")
+ 
+     df.columns = [
+         "Resistance",
+         "Grid_Current_A", "Grid_Current_B", "Grid_Current_C",
+         "Rotor_Current_A", "Rotor_Current_B", "Rotor_Current_C",
+         "Stator_Current_A", "Stator_Current_B", "Stator_Current_C",
+         "Grid_Voltage_A", "Grid_Voltage_B", "Grid_Voltage_C",
+        "Grid_Power_P", "Grid_Power_Q",
+         "Rotor_Power_P", "Rotor_Power_Q",
+         "Stator_Power_P", "Stator_Power_Q",
+         "Fault_Class"
+     ]
+ 
+     documents = []
+     for _, row in df.iterrows():
+         documents.append(
+             f"""
+ Resistance: {row['Resistance']} ohm
+ Grid Currents: {row['Grid_Current_A']}, {row['Grid_Current_B']}, {row['Grid_Current_C']}
+ Rotor Currents: {row['Rotor_Current_A']}, {row['Rotor_Current_B']}, {row['Rotor_Current_C']}
+ Stator Currents: {row['Stator_Current_A']}, {row['Stator_Current_B']}, {row['Stator_Current_C']}
+ Voltages: {row['Grid_Voltage_A']}, {row['Grid_Voltage_B']}, {row['Grid_Voltage_C']}
+ Grid Power: P={row['Grid_Power_P']} Q={row['Grid_Power_Q']}
+ Rotor Power: P={row['Rotor_Power_P']} Q={row['Rotor_Power_Q']}
+ Stator Power: P={row['Stator_Power_P']} Q={row['Stator_Power_Q']}
+ Fault Type: {row['Fault_Class']}
+ """
+        )
+ 
+     embedding = HuggingFaceEmbeddings(
+         model_name="sentence-transformers/all-MiniLM-L6-v2"
+     )
+ 
+     vectordb = Chroma.from_texts(documents, embedding)
+     return vectordb
+ 
+ vectordb = load_vector_db()
+ 
+ # ---------------- CHATBOT FUNCTION ----------------
+ def diagnose_fault(query):
+     docs = vectordb.similarity_search(query, k=4)
+     context = "\n".join([d.page_content for d in docs])
+ 
+     prompt = f"""
+ You are an Electrical Fault Diagnosis Expert AI.
+ 
+ Context:
+ {context}
+ 
+ User Input:
+ {query}
+ 
+ Provide:
+ 1. Fault Type
+ 2. Technical Cause
+3. Electrical Explanation
+4. Preventive Measures
+ """
+ 
+     response = model.generate_content(prompt)
+     return response.text
+ 
+ # ---------------- UI ----------------
+st.title("⚡ Electrical Fault Diagnosis Chatbot")
+ 
+ user_input = st.text_area(
+     "Enter fault symptoms or electrical parameters:",
+     placeholder="Example: High stator current in phase B and low grid voltage"
+ )
+ 
+ if st.button("⚡"):
+     if user_input.strip():
+         with st.spinner("Analyzing fault..."):
+             answer = diagnose_fault(user_input)
+         st.success("Diagnosis Completed")
+         st.write(answer)
+     else:
+         st.warning("Please enter fault details.")
+
 # Only show the chat interface IF the file has been processed
