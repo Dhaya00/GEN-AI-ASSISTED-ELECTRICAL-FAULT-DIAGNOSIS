@@ -7,10 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1TKHuO0yH_cP-nykKdtgE-_c73gdagwq3
 """
 
-!pip install -U google-generativeai langchain langchain-community chromadb sentence-transformers streamlit pyngrok
-
-from google.colab import files
-files.upload()
+import streamlit as st
+uploaded_file = st.file_uploader("Upload a file", type=["pdf", "csv", "txt"])
 
 import os
 os.environ["GOOGLE_API_KEY"] = "AIzaSyAtOJBpejAwg9580H4O3svTYF-Q734_YwA"
@@ -122,9 +120,3 @@ model = genai.GenerativeModel('models/gemini-2.5-flash')
 #     else:
 #         st.warning("Please enter fault details.")
 #
-
-!wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
-!chmod +x cloudflared-linux-amd64
-!mv cloudflared-linux-amd64 cloudflared
-
-!streamlit run app.py & ./cloudflared tunnel --url http://localhost:8501
