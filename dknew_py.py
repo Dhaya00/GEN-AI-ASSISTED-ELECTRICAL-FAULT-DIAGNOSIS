@@ -117,6 +117,5 @@ model = genai.GenerativeModel('models/gemini-2.5-flash')
 #         st.write(answer)
 #     else:
 #         st.warning("Please enter fault details.")
-#
 
 
