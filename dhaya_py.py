@@ -10,9 +10,6 @@ Original file is located at
 import streamlit as st
 uploaded_file = st.file_uploader("Upload a file", type=["pdf", "csv", "txt"])
 
-import os
-os.environ["GOOGLE_API_KEY"] = "AIzaSyAtOJBpejAwg9580H4O3svTYF-Q734_YwA"
-
 import google.generativeai as genai
 import os
 
