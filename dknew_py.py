@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1TKHuO0yH_cP-nykKdtgE-_c73gdagwq3
 """
 
-pip install -U google-generativeai langchain langchain-community chromadb sentence-transformers streamlit pyngrok
-
 from google.colab import files
 files.upload()
 
