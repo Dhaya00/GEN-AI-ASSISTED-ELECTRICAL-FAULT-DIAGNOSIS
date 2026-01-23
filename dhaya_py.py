@@ -69,27 +69,37 @@ vectordb = load_vector_db()
 
 # ---------------- CHATBOT FUNCTION ----------------
 def diagnose_fault(query):
-    docs = vectordb.similarity_search(query, k=4)
+    docs = vectordb.similarity_search(query, k=2)  # reduced from 4 to 2
     context = "\n".join([d.page_content for d in docs])
 
     prompt = f"""
-You are an Electrical Fault Diagnosis Expert AI.
+You are an electrical fault diagnosis assistant.
 
-Context:
+Use the information below to identify the issue.
+
+Data:
 {context}
 
-User Input:
+User symptom:
 {query}
 
-Provide:
-1. Fault Type
-2. Technical Cause
-3. Electrical Explanation
-4. Preventive Measures
+Give:
+- Fault Type
+- Cause
+- Prevention
 """
 
-    response = model.generate_content(prompt)
-    return response.text
+    try:
+        response = model.generate_content(prompt)
+        return response.text
+
+    except Exception as e:
+        # Fallback if Gemini quota is exceeded
+        return f"""⚠️ AI service temporarily unavailable.
+        
+Based on similar historical data, a related case shows:
+{docs[0].page_content}
+"""
 
 
 # ---------------- UI ----------------
