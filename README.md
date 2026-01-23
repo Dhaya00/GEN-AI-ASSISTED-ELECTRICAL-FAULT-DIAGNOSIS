@@ -40,3 +40,6 @@ Contains grid currents, rotor currents, voltages, power values, and labeled faul
     2.Technical Cause
     3.Electrical Explanation
     4.Preventive Measures
+
+APPLICATION LINK
+https://dhaya00-gen-ai-assisted-electrical-fault-diagno-dhaya-py-48pbpk.streamlit.app/
