@@ -7,42 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1TKHuO0yH_cP-nykKdtgE-_c73gdagwq3
 """
 
-import streamlit as st
-import pandas as pd
-
-st.set_page_config(page_title="Electrical Fault Diagnosis AI", layout="centered")
-
-st.title("⚡ Gen-AI Electrical Fault Diagnosis Bot")
-
-# Load dataset automatically from repo
-@st.cache_data
-def load_data():
-    return pd.read_csv("faultdata-new.csv")
-
-data = load_data()
-st.success("Knowledge base loaded successfully ✅")
-
-# Chat input
-user_input = st.chat_input("Describe the electrical fault...")
-
-if user_input:
-    st.chat_message("user").write(user_input)
-
-    # Search dataset for matching fault
-    # Replace line 32 with this to prevent the crash
-if 'Fault' in data.columns:
-    matches = data[data['Fault'].str.contains(user_input, case=False, na=False)]
-else:
-    st.error(f"Column 'Fault' not found. Available columns: {list(data.columns)}")
-
-    if not matches.empty:
-        result = matches.iloc[0]['Solution']
-    else:
-        result = "⚠ No exact match found. Try describing the fault with more details."
-
-    st.chat_message("assistant").write(result)
-
-
 import google.generativeai as genai
 import os
 
