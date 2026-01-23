@@ -24,7 +24,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
  
 # # ---------------- CONFIG ----------------
- st.set_page_config(page_title="Electrical Fault Diagnosis Chatbot")
+st.set_page_config(page_title="Electrical Fault Diagnosis Chatbot")
  
  genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
  model = genai.GenerativeModel('models/gemini-2.5-flash')
