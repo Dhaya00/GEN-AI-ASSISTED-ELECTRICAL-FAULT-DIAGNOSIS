@@ -115,3 +115,10 @@ model = genai.GenerativeModel('models/gemini-2.5-flash')
 #     else:
 #         st.warning("Please enter fault details.")
 #
+# Only show the chat interface IF the file has been processed
+if uploaded_file and "bot" in st.session_state:
+    if query := st.chat_input("What is the electrical fault?"):
+        # Chat logic here...
+        st.write(f"Analyzing: {query}")
+else:
+    st.info("Please wait for the PDF upload to finish to start chatting.")
