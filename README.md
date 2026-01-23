@@ -21,16 +21,13 @@ Streamlit                          	Web app interface
 Google Gemini API                  	Generative AI diagnosis
 LangChain                          	AI pipeline framework
 HuggingFace Embeddings	            Text-to-vector conversion
-Chroma DB	                          Vector database for similarity search
+Chroma DB	                        Vector database for similarity search
 Pandas	                            Dataset processing
 
 📂 Datasets Used
 
 1. Fault Dataset
 Contains grid currents, rotor currents, voltages, power values, and labeled fault types.
-2.Sensor Fault Detection Dataset (Kaggle)
-Provides sensor readings mapped to different fault conditions.
-Both datasets are merged to create a comprehensive fault knowledge base.
 
 ⚙️ How the System Works
 
