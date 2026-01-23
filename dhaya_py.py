@@ -29,7 +29,11 @@ if user_input:
     st.chat_message("user").write(user_input)
 
     # Search dataset for matching fault
+    # Replace line 32 with this to prevent the crash
+if 'Fault' in data.columns:
     matches = data[data['Fault'].str.contains(user_input, case=False, na=False)]
+else:
+    st.error(f"Column 'Fault' not found. Available columns: {list(data.columns)}")
 
     if not matches.empty:
         result = matches.iloc[0]['Solution']
