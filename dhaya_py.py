@@ -8,7 +8,36 @@ Original file is located at
 """
 
 import streamlit as st
-uploaded_file = st.file_uploader("Upload a file", type=["pdf", "csv", "txt"])
+import pandas as pd
+
+st.set_page_config(page_title="Electrical Fault Diagnosis AI", layout="centered")
+
+st.title("⚡ Gen-AI Electrical Fault Diagnosis Bot")
+
+# Load dataset automatically from repo
+@st.cache_data
+def load_data():
+    return pd.read_csv("faultdata-new.csv")
+
+data = load_data()
+st.success("Knowledge base loaded successfully ✅")
+
+# Chat input
+user_input = st.chat_input("Describe the electrical fault...")
+
+if user_input:
+    st.chat_message("user").write(user_input)
+
+    # Search dataset for matching fault
+    matches = data[data['Fault'].str.contains(user_input, case=False, na=False)]
+
+    if not matches.empty:
+        result = matches.iloc[0]['Solution']
+    else:
+        result = "⚠ No exact match found. Try describing the fault with more details."
+
+    st.chat_message("assistant").write(result)
+
 
 import google.generativeai as genai
 import os
@@ -116,9 +145,3 @@ model = genai.GenerativeModel('models/gemini-2.5-flash')
 #         st.warning("Please enter fault details.")
 #
 # Only show the chat interface IF the file has been processed
-if uploaded_file and "bot" in st.session_state:
-    if query := st.chat_input("What is the electrical fault?"):
-        # Chat logic here...
-        st.write(f"Analyzing: {query}")
-else:
-    st.info("Please wait for the PDF upload to finish to start chatting.")
