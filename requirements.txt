@@ -1,7 +1,0 @@
-streamlit
-pandas
-google-generativeai
-langchain-community
-chromadb
-sentence-transformers
-huggingface-hub
