@@ -9,8 +9,11 @@ Electrical systems generate large volumes of sensor and electrical parameter dat
 
 This project solves that problem by building a Retrieval-Augmented Generation (RAG) based chatbot that:
 ✔ Understands user-described electrical symptoms
+
 ✔ Searches similar historical fault cases from datasets
+
 ✔ Uses Google Gemini AI to generate expert-level diagnosis
+
 ✔ Provides causes, explanations, and preventive measures
 
 
