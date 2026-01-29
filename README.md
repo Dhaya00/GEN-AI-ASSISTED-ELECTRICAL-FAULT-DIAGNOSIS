@@ -8,6 +8,7 @@ This project combines Generative AI (Google Gemini) with vector similarity searc
 Electrical systems generate large volumes of sensor and electrical parameter data. Identifying faults manually is time-consuming and requires expert knowledge.
 
 This project solves that problem by building a Retrieval-Augmented Generation (RAG) based chatbot that:
+
 ✔ Understands user-described electrical symptoms
 
 ✔ Searches similar historical fault cases from datasets
@@ -35,9 +36,13 @@ Contains grid currents, rotor currents, voltages, power values, and labeled faul
 ⚙️ How the System Works
 
 1️⃣ User enters fault symptoms (example: “High stator current in phase B and low voltage”)
+
 2️⃣ System converts datasets into vector embeddings
+
 3️⃣ Chroma DB finds the most similar historical fault cases
+
 4️⃣ Gemini AI analyzes retrieved data
+
 5️⃣ Chatbot returns:
     1.Fault Type
     2.Technical Cause
